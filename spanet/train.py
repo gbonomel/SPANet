@@ -140,10 +140,9 @@ def main(
     # Create the checkpoint for this training run. We will save the best validation networks based on 'accuracy'
     callbacks = [
         ModelCheckpoint(
-            verbose=options.verbose_output,
-            monitor='validation_accuracy',
-            save_top_k=3,
-            mode='max',
+            monitor=options.checkpoint_metric,
+            save_top_k=options.checkpoint_save_top_k,
+            mode=options.checkpoint_mode,
             save_last=True
         ),
         LearningRateMonitor(),
